@@ -23,6 +23,7 @@ const UrlForm = ({ addOne, notify }) => {
             severity: 'success',
             duration: 4
           })
+          setUrlInput('')
         }
       } catch (error) {
         notify({
