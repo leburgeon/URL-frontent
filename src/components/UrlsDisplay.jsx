@@ -1,26 +1,8 @@
-import { useEffect, useState } from "react"
-import urlService from '../urlService'
+/* eslint-disable react/prop-types */
 import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material"
 
 
-const UrlsDisplay = () => {
-  const [urls, setUrls] = useState([])
-
-  useEffect(() => {
-    // Async method for fetching the urls from the server
-    const initialiseUrls = async () => {
-      const response = await urlService.getUrls()
-      console.log('#################################')
-      console.log(response.data)
-      setUrls(response.data)
-    }
-
-    try {
-      initialiseUrls()
-    } catch (error) {
-      window.alert('Couldnt connect to url server' + error.message)
-    }
-  }, [])
+const UrlsDisplay = ({ urls }) => {  
 
   return (
     <TableContainer component={Paper}>
@@ -35,7 +17,7 @@ const UrlsDisplay = () => {
         <TableBody>
           {urls.map(url => (
             <TableRow key={url.shortUrl}>
-              <TableCell>{url.url}</TableCell>
+              <TableCell><a href={url.url}>{url.url}</a></TableCell>
               <TableCell align="right">{url.shortUrl}</TableCell>
               <TableCell align="right">{new Date(url.created).toLocaleDateString()}</TableCell>
             </TableRow>
