@@ -3,6 +3,13 @@ import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody
 
 
 const UrlsDisplay = ({ urls }) => {  
+  const hostUrl = window.location.origin + '/'
+
+  if (!urls){
+    return (
+      <></>
+    )
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -17,8 +24,8 @@ const UrlsDisplay = ({ urls }) => {
         <TableBody>
           {urls.map(url => (
             <TableRow key={url.shortUrl}>
-              <TableCell><a href={url.url}>{url.url}</a></TableCell>
-              <TableCell align="right">{url.shortUrl}</TableCell>
+              <TableCell>{url.url}</TableCell>
+              <TableCell align="right"><a href={hostUrl + url.shortUrl}>{url.shortUrl}</a></TableCell>
               <TableCell align="right">{new Date(url.created).toLocaleDateString()}</TableCell>
             </TableRow>
           ))}

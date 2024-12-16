@@ -1,5 +1,5 @@
 import { Container, Alert } from "@mui/material"
-import UrlsDisplay from "./components/urlsDisplay"
+import UrlsDisplay from "./components/UrlsDisplay"
 import UrlForm from "./components/UrlForm"
 import { useState, useEffect } from "react"
 import urlService from "./urlService"
@@ -23,15 +23,15 @@ const App = () => {
   useEffect(() => {
     // Async method for fetching the urls from the server
     const initialiseUrls = async () => {
-      const response = await urlService.getUrls()
-      setUrls(response.data)
+      try {
+        const response = await urlService.getUrls()
+        setUrls(response.data)
+      } catch (error) {
+        window.alert('Couldnt connect to url server' + error.message)
+      }
     }
-
-    try {
-      initialiseUrls()
-    } catch (error) {
-      window.alert('Couldnt connect to url server' + error.message)
-    }
+    
+    initialiseUrls()
   }, [])
 
   return (
