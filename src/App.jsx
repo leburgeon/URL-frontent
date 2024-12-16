@@ -37,6 +37,7 @@ const App = () => {
   return (
     <Container>
       {alertMessage && <Alert severity={alertMessage.severity}>{alertMessage.message}</Alert>}
+      <div style={{margin: '5px', backgroundColor:'lightblue', padding: '4px'}}>Usage: {window.location.origin}/<b>{'<short-url>'}</b> to redirect</div>
       <UrlsDisplay urls={urls}/>
       <UrlForm notify={notify} addOne={addOne}/>
     </Container>

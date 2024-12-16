@@ -13,7 +13,9 @@ export default defineConfig({
       '/': {
         target: 'http://localhost:3000',
         changeOrigin: true,
-        rewrite: (path) => path === '/' ? '/index.html' : path,
+        rewrite: (path) => {
+          return path === '/' ? '/index.html' : path
+        },
       }
     }
   }
